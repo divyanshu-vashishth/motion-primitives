@@ -1,15 +1,26 @@
 export const metadata = {
   title: 'Spotlight - Motion-Primitives',
+<<<<<<< HEAD
   description: 'A container component that adds a spotlight effect following the cursor.',
 };
 
 import { SpotlightBasic } from '@/components/examples/spotlight-basic';
 import { SpotlightCards } from '@/components/examples/spotlight-card'
+=======
+  description:
+    'A dynamic spotlight effect component that follows cursor movement.',
+};
+
+import { SpotlightBasic } from './spotlight-basic';
+import { SpotlightCustomColor } from './spotlight-custom-color';
+import { SpotlightBorder } from './spotlight-border';
+>>>>>>> fa4d98df962051469fc45aca2507536c80ae96f7
 import ComponentCodePreview from '@/components/website/component-code-preview';
 import CodeBlock from '@/components/website/code-block';
 
 # Spotlight
 
+<<<<<<< HEAD
 A dynamic spotlight effect component that follows cursor movement, creating an engaging interactive experience.
 
 ## Examples
@@ -26,6 +37,38 @@ A dynamic spotlight effect component that follows cursor movement, creating an e
 <ComponentCodePreview
   component={<SpotlightCards />}
   filePath='examples/spotlight-card'
+=======
+A dynamic spotlight effect component that follows cursor movement.
+
+## Examples
+
+### Spotlight Basic 1
+
+<ComponentCodePreview
+  component={<SpotlightBasic />}
+  filePath='app/docs/spotlight/spotlight-basic.tsx'
+  classNameComponentContainer='px-4'
+/>
+
+### Spotlight Custom Color
+
+You can customize the color with using [Tailwind CSS gradient color stop](https://tailwindcss.com/docs/gradient-color-stops). (e.g `from-blue-800 via-blue-600 to-blue-400`)
+
+<ComponentCodePreview
+  component={<SpotlightCustomColor />}
+  filePath='app/docs/spotlight/spotlight-custom-color.tsx'
+  classNameComponentContainer='px-4'
+/>
+
+### Spotlight Border
+
+You can create a spotlight border by creating a container with a padding that will be used as a border.
+
+<ComponentCodePreview
+  component={<SpotlightBorder />}
+  filePath='app/docs/spotlight/spotlight-border.tsx'
+  classNameComponentContainer='px-4'
+>>>>>>> fa4d98df962051469fc45aca2507536c80ae96f7
 />
 
 ## Code
@@ -40,6 +83,7 @@ A dynamic spotlight effect component that follows cursor movement, creating an e
 
 ### Spotlight
 
+<<<<<<< HEAD
 | Prop           | Type          | Default                        | Description                                    |
 | :------------ | :------------ | :---------------------------- | :--------------------------------------------- |
 | className     | string        | ''                           | Additional CSS classes for styling              |
@@ -49,3 +93,14 @@ A dynamic spotlight effect component that follows cursor movement, creating an e
 | opacity       | number        | 1                            | Maximum opacity when hovered                    |
 | springOptions | SpringOptions | `{ stiffness: 400, damping: 25 }` | Animation spring configuration            |
 
+=======
+| Prop          | Type          | Default         | Description                            |
+| :------------ | :------------ | :-------------- | :------------------------------------- |
+| className     | string        | ''              | Additional CSS classes for styling     |
+| size          | number        | 200             | Size of the spotlight effect in pixels |
+| springOptions | SpringOptions | `{ bounce: 0 }` | Animation spring configuration         |
+
+## Credit
+
+Initiated by [@divyanshu-vashishth](https://github.com/divyanshu-vashishth)
+>>>>>>> fa4d98df962051469fc45aca2507536c80ae96f7

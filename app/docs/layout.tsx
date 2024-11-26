@@ -1,14 +1,12 @@
 'use client';
-import ThemeSwitch from '@/components/website/theme-switch';
-import GitHubIcon from '@/components/website/icons/github';
-import XIcon from '@/components/website/icons/x';
 import { ScrollArea } from '@/components/website/scroll-area';
 import { cn } from '@/lib/utils';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { TableOfContents } from '@/components/website/table-of-contents';
-import { MPLogo } from '@/components/website/icons/motion-primitives-logo';
+import LaunchBanner from '@/components/website/launch-banner';
+import { Header } from '@/components/website/header';
 
 type NavigationItem = {
   name: string;
@@ -30,31 +28,34 @@ const NAVIGATION: NavigationGroup[] = [
         name: 'Introduction',
         href: '/docs',
       },
+      {
+        name: 'Installation',
+        href: '/docs/installation',
+      },
     ],
   },
   {
     name: 'Core Components',
     children: [
       {
-        name: 'Animated Number',
-        href: '/docs/animated-number',
+        name: 'Accordion',
+        href: '/docs/accordion',
+      },
+      {
+        name: 'Animated Background',
+        href: '/docs/animated-background',
       },
       {
         name: 'Animated Group',
         href: '/docs/animated-group',
       },
       {
-        name: 'Accordion',
-        href: '/docs/accordion',
-      },
-      {
-        name: 'Animated background',
-        href: '/docs/animated-background',
+        name: 'Animated Number',
+        href: '/docs/animated-number',
       },
       {
         name: 'Border Trail',
         href: '/docs/border-trail',
-        isNew: true,
       },
       {
         name: 'Carousel',
@@ -73,7 +74,7 @@ const NAVIGATION: NavigationGroup[] = [
         href: '/docs/disclosure',
       },
       {
-        name: 'In view',
+        name: 'In View',
         href: '/docs/in-view',
       },
       {
@@ -90,13 +91,21 @@ const NAVIGATION: NavigationGroup[] = [
     name: 'Text',
     children: [
       {
-        name: 'Text effect',
+        name: 'Text Effect',
         href: '/docs/text-effect',
-        isUpdated: true,
       },
       {
-        name: 'Text morph',
+        name: 'Text Loop',
+        href: '/docs/text-loop',
+        isNew: true,
+      },
+      {
+        name: 'Text Morph',
         href: '/docs/text-morph',
+      },
+      {
+        name: 'Text Scramble',
+        href: '/docs/text-scramble',
         isNew: true,
       },
       {
@@ -114,6 +123,15 @@ const NAVIGATION: NavigationGroup[] = [
         href: '/docs/dock',
       },
       {
+        name: 'Image Comparison',
+        href: '/docs/image-comparison',
+        isNew: true,
+      },
+      {
+        name: 'Toolbar Dynamic',
+        href: '/docs/toolbar-dynamic',
+      },
+      {
         name: 'Toolbar Expandable',
         href: '/docs/toolbar-expandable',
       },
@@ -126,11 +144,12 @@ const NAVIGATION: NavigationGroup[] = [
         href: '/docs/scroll-progress',
       },
       {
-        name: 'Spinning Text',
-        href: '/docs/spinning-text',
+        name: 'Spotlight',
+        href: '/docs/spotlight',
         isNew: true,
       },
       {
+<<<<<<< HEAD
         name: 'Spotlight',
         href: '/docs/spotlight',
         isNew: true,
@@ -138,50 +157,32 @@ const NAVIGATION: NavigationGroup[] = [
       {
         name: 'Toolbar Dynamic',
         href: '/docs/toolbar-dynamic',
+=======
+        name: 'Spinning Text',
+        href: '/docs/spinning-text',
+      },
+      {
+        name: 'Tilt',
+        href: '/docs/tilt',
+        isNew: true,
+>>>>>>> fa4d98df962051469fc45aca2507536c80ae96f7
       },
     ],
   },
 ];
 
-function Header() {
-  return (
-    <header className='sticky top-0 z-10 flex h-16 items-center justify-center border-b border-zinc-950/10 bg-white px-6 py-5 dark:border-white/10 dark:bg-zinc-950'>
-      <div className='mx-auto flex w-full items-center justify-between md:max-w-7xl'>
-        <Link href='/docs' className='relative flex items-center space-x-2'>
-          <MPLogo className='h-6 w-auto' />
-          <div className='text-sm font-medium text-zinc-950 dark:text-white'>
-            motion-primitives
-          </div>
-          <span className='mb-4 ml-2 select-none rounded bg-zinc-800 px-1.5 py-0.5 text-[10px] font-medium text-zinc-50'>
-            beta
-          </span>
-        </Link>
-        <nav className='flex items-center gap-2'>
-          <a
-            href='https://twitter.com/Ibelick'
-            target='_blank'
-            rel='noopener noreferrer'
-            className='inline-flex h-9 w-9 items-center justify-center'
-          >
-            <XIcon className='h-4 w-4 fill-zinc-950 dark:fill-white' />
-          </a>
-          <a
-            href='https://github.com/ibelick/motion-primitives'
-            target='_blank'
-            rel='noopener noreferrer'
-            className='inline-flex h-9 w-9 items-center justify-center'
-          >
-            <GitHubIcon className='h-4 w-4 fill-zinc-950 dark:fill-white' />
-          </a>
-          <ThemeSwitch />
-        </nav>
-      </div>
-    </header>
-  );
-}
-
 function NavigationDesktop() {
   const pathname = usePathname();
+  const activeRef = useRef<HTMLLIElement | null>(null);
+
+  useEffect(() => {
+    if (activeRef.current) {
+      activeRef.current.scrollIntoView({
+        behavior: 'auto',
+        block: 'nearest',
+      });
+    }
+  }, [pathname]);
 
   return (
     <aside className='sticky top-14 hidden h-[calc(100dvh-theme(spacing.16))] w-[220px] shrink-0 pt-8 md:block lg:pt-12'>
@@ -202,7 +203,7 @@ function NavigationDesktop() {
                       const isActive = pathname === child.href;
 
                       return (
-                        <li key={child.href}>
+                        <li key={child.href} ref={isActive ? activeRef : null}>
                           <Link
                             className={cn(
                               'relative inline-flex items-center space-x-1 pl-4 text-sm font-normal text-zinc-700 hover:text-zinc-950 dark:text-zinc-400 dark:hover:text-white',
@@ -278,6 +279,7 @@ export default function ComponentLayout({
 }) {
   return (
     <>
+      <LaunchBanner />
       <Header />
       <div className='px-6 lg:px-8'>
         <div className='mx-auto md:max-w-7xl'>

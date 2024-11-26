@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import React from 'react';
-import { DialogBasicOne } from '@/components/examples/dialog-basic-1';
+import { DialogBasicOne } from '@/app/docs/dialog/dialog-basic-1';
 import XIcon from '@/components/website/icons/x';
 import GitHubIcon from '@/components/website/icons/github';
 import ThemeSwitch from '@/components/website/theme-switch';
@@ -8,14 +8,15 @@ import Popover from '@/components/core/popover';
 import ToolbarDynamic from '@/components/core/toolbar-dynamic';
 import { ChevronRight } from 'lucide-react';
 import { CardExampleLanding } from '@/components/website/card-example-landing';
-import { AnimatedGroupPreset } from '@/components/examples/animated-group-preset';
-import { TextEffectWithExit } from '@/components/examples/text-effect-exit';
-import { InViewImagesGrid } from '@/components/examples/in-view-images-grid';
-import { InfiniteSliderHoverSpeed } from '@/components/examples/infinite-slider-hover-speed';
-import { Cursor1 } from '@/components/examples/cursor-1';
-import { CarouselSpacing } from '@/components/examples/carousel-spacing';
-import { SegmentedControl } from '@/components/examples/segmented-control';
+import { AnimatedGroupPreset } from '@/app/docs/animated-group/animated-group-preset';
+import { TextEffectWithExit } from '@/app/docs/text-effect/text-effect-exit';
+import { InViewImagesGrid } from '@/app/docs/in-view/in-view-images-grid';
+import { InfiniteSliderHoverSpeed } from '@/app/docs/infinite-slider/infinite-slider-hover-speed';
+import { Cursor1 } from '@/app/docs/cursor/cursor-1';
+import { CarouselSpacing } from '@/app/docs/carousel/carousel-spacing';
+import { SegmentedControl } from '@/app/docs/animated-background/segmented-control';
 import { MPLogo } from '@/components/website/icons/motion-primitives-logo';
+import LaunchBanner from '@/components/website/launch-banner';
 
 function Button({
   children,
@@ -80,12 +81,13 @@ function Header() {
 export default function Motion() {
   return (
     <>
+      <LaunchBanner />
       <Header />
       <div className='px-6 py-4 pb-20'>
         <section className='flex h-full flex-col items-center justify-center pt-20'>
           <div className='flex w-full max-w-lg flex-col items-center justify-center text-center'>
             <h1 className='relative mb-4 text-4xl font-medium text-zinc-950 dark:text-zinc-50'>
-              UI kit to make beautiful interfaces, faster
+              UI kit to make beautiful, animated interfaces, faster.
             </h1>
             <p className='text-center text-zinc-600 dark:text-zinc-200'>
               Beautifully designed motions components. Easy copy-paste.
